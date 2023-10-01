@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  width: 50%;
+  height: 100vh;
+  background-image: url("{% static 'images/Solstar logo.jpg' %}");
+  background-repeat: no-repeat;
+  background-size: cover; /* You can use 'cover' or 'contain' depending on your preference */
+}

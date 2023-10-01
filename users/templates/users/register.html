@@ -1,13 +1,10 @@
-{% extends "solstar/base.html" %}
+{% extends "solstar/base.html" %} {% block content %}
 
-{% block content %}
+<form method="post" action="{% url 'users:register' %}">
+  {% csrf_token %} {{ form.as_p }}
 
-<form method="post" action="{% url 'users:register' %}" >
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button name="submit">register</button>
-    <input type="hidden" name="next" value="{% url 'solstar:index' %}" />
+  <button name="submit">register</button>
+  <input type="hidden" name="next" value="{% url 'solstar:index' %}" />
 </form>
 
 {% endblock content %}
