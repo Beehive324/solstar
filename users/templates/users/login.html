@@ -1,12 +1,44 @@
-{% extends "solstar/base.html" %} {% block content %} {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+{% extends "solstar/base.html" %} 
+{% block content %}
 
-<form method="post" action="{% url 'users:login' %}">
-  {% csrf_token %} {{ form.as_p }}
 
-  <button name="submit">log in</button>
-  <input type="hidden" name="next" value="{% url 'solstar:index'%}" />
-</form>
 
-{% endblock content%}
+<div class="form-container">
+    {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'users:login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Log in</button>
+        <input type="hidden" name="next" value="{% url 'solstar:index' %}" />
+    </form>
+</div>
+
+<style>
+    
+
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        padding: 20px;
+        border-radius: 10px;
+        margin: 100px auto; /* Center the form vertically */
+        max-width: 400px; /* Set a maximum width for the form */
+    }
+
+    .form-container input[type="text"], .form-container input[type="password"] {
+        background-color: rgba(240, 240, 240, 0.9); /* Semi-transparent light gray background */
+        border: 1px solid #777;
+    }
+
+    .form-container button {
+        background-color: rgba(119, 119, 119, 0.8); /* Semi-transparent gray button background */
+
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock content %}

@@ -1,40 +1,63 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
-    <div class="background"></div>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      type="x-icon"
-      href="{% static 'images/Solstar logo.jpg' %}"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="x-icon" href="{% static 'images/Solstar logo.jpg' %}">
     <title>Solstaronline</title>
     <style>
-      .background {
-        width: 100%;
-        height: 100vh;
-        background-image: url("{% static 'images/Solstar main page.jpg' %}");
-        background-repeat: no-repeat;
-        background-size: cover; /* Adjust as needed */
-        background-position: center center;
-      }
+        .background {
+            width: 100%;
+            height: 100vh;
+            background-image: url("{% static 'images/Solstar main page.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center center;
+        }
+
+        /* Add styles for your navigation links at the top */
+        .topnav {
+            background-color: rgba(0, 0, 0, 0.7); 
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        .topnav a {
+            color: white; /* Link text color */
+            text-decoration: none;
+            padding: 10px 20px; /* Add spacing around links */
+        }
+
+        /* Add styles for your content */
+        body {
+            text-align: center; 
+            margin-top: 60px; 
+        }
     </style>
-  </head>
-  <body></body>
-</html>
+</head>
+<body>
+<div class="background"></div>
+
+<div class="topnav">
+    <a href="{% url 'solstar:index' %}">Solstaronline</a>
+    {% if user.is_authenticated %} Welcome, {{ user.username }}.
+    <a href="{% url 'users:logout' %}">Log out</a>
+    {% else %}
+    <a href="{% url 'users:register' %}">Register</a>
+    <a href="{% url 'users:login' %}">Log in</a>
+    <a href="{% url 'solstar:collection' %}">Collection</a>
+    {% endif %}
+</div>
 
 <p>
-  <a href="{% url 'solstar:index' %}">Solstaronline</a>
-  {% if user.is_authenticated %} Welcome, {{ user.username }}.
-  <a href="{% url 'users:logout' %}">log out </a>
-  {% else %}
-  <a href="{% url 'users:register' %}">register</a>
-  <a href="{%url 'users:login' %}">log in</a>
-  <a href="{%url 'solstar:collection' %}">collection</a>
-  {% endif%}
+   
 </p>
 
 {% block content %} {% endblock content %}
+</body>
+</html>
